@@ -4,11 +4,10 @@ import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * Fake inventory for the CLI — the PDF never listed real SKUs, so these are just
- * made-up campus-type picks with weird prices on purpose.
- */
 public class StoreCatalog {
+
+    private StoreCatalog() {
+    }
 
     private static final Map<String, BigDecimal> TAG_TO_PRICE = new LinkedHashMap<>();
 

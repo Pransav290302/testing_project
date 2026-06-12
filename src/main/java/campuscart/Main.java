@@ -3,11 +3,10 @@ package campuscart;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-/**
- * Phase 1 — little text-only store loop. I kept everything readable on purpose
- * because the prof grades whether the behaviour matches the handout, not fancy architecture.
- */
 public class Main {
+
+    private Main() {
+    }
 
     public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
@@ -213,8 +212,10 @@ public class Main {
         bag.wipe();
     }
 
-    /** Tiny pause so the spinner is visible in the terminal. */
     private static void sleepBrief(long ms) {
+        if (Boolean.getBoolean("campuscart.fast.tests")) {
+            return;
+        }
         try {
             Thread.sleep(ms);
         } catch (InterruptedException ex) {
@@ -222,9 +223,6 @@ public class Main {
         }
     }
 
-    /**
-     * ASCII-only spinner so plain CMD never prints junk characters before the label.
-     */
     private static void loadingSpinner(String label, int ticks) {
         String[] frames = {"|", "/", "-", "\\"};
         StringBuilder pad = new StringBuilder();
@@ -241,9 +239,6 @@ public class Main {
         System.out.println("\r[done] " + label + " ... done" + pad);
     }
 
-    /**
-     * Rejects decimals, scientific notation, negatives, zero.
-     */
     private static Integer readWholeQty(String token) {
         try {
             if (token.contains(".") || token.toLowerCase().contains("e")) {
@@ -259,10 +254,6 @@ public class Main {
         }
     }
 
-    /**
-     * Makes menu choices reliable on Windows terminals (full-width digits, stray spaces)
-     * and helps when someone types a word instead of a digit.
-     */
     private static String normalizeMenuPick(String raw) {
         if (raw == null) {
             return "";
@@ -273,7 +264,6 @@ public class Main {
         }
         s = fullWidthDigitsToAscii(s).trim().toLowerCase();
 
-        // Word shortcuts - same actions as 2 and 3 from the assignment
         if (s.equals("total") || s.equals("sum") || s.equals("owe")) {
             return "2";
         }
@@ -290,7 +280,6 @@ public class Main {
             return "8";
         }
 
-        // First digit 1-8 in the line wins ("2", " 2 ", "option 2")
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (c >= '1' && c <= '8') {

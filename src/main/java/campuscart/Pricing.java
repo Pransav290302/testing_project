@@ -3,10 +3,10 @@ package campuscart;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-/**
- * Handles cents rounding plus the tax/shipping rules from the project brief.
- */
 public class Pricing {
+
+    private Pricing() {
+    }
 
     public static final BigDecimal MIN_ORDER = new BigDecimal("1.00");
     public static final BigDecimal MAX_ORDER = new BigDecimal("99999.99");
@@ -50,7 +50,6 @@ public class Pricing {
         if (how == ShipSpeed.NEXT_DAY) {
             return NEXT_SHIP.setScale(2, RoundingMode.HALF_UP);
         }
-        // STANDARD: free only when raw cart is strictly over $50
         if (goodsBeforeTax.compareTo(STD_CUT) > 0) {
             return BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
         }
@@ -63,19 +62,15 @@ public class Pricing {
         return roundMoney(goodsBeforeTax.add(tax).add(ship));
     }
 
-    /**
-     * Accepts IL/CA/NY or the full names from the project PDF so totals do not look "wrong"
-     * if someone types Illinois instead of IL.
-     */
     private static String taxStateCode(String raw) {
         String s = raw.trim().toUpperCase().replace(".", "");
-        if (s.equals("IL") || s.equals("ILLINOIS")) {
+        if (s.equals("ILLINOIS")) {
             return "IL";
         }
-        if (s.equals("CA") || s.equals("CALIFORNIA")) {
+        if (s.equals("CALIFORNIA")) {
             return "CA";
         }
-        if (s.equals("NY") || s.equals("NEW YORK") || s.equals("NEWYORK")) {
+        if (s.equals("NEW YORK") || s.equals("NEWYORK")) {
             return "NY";
         }
         if (inList(TAXED, s)) {

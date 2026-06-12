@@ -2,7 +2,6 @@ package campuscart;
 
 import java.math.BigDecimal;
 
-/** One row in the cart: label + unit price + how many. */
 public class LineItem {
 
     private final String label;

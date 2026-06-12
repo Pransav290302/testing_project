@@ -8,7 +8,6 @@ import java.util.Map;
 
 public class Cart {
 
-    // key = lowercase item name so "Binder" and "binder" match
     private final Map<String, LineItem> rows = new LinkedHashMap<>();
 
     public int allPiecesCount() {
