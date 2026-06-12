@@ -12,7 +12,8 @@ SE 433 Testing Project
 <img width="1016" height="907" alt="p4" src="https://github.com/user-attachments/assets/4a1ad3db-cce1-48d9-bd4e-03e094396ea7" />
 <img width="1920" height="932" alt="p3" src="https://github.com/user-attachments/assets/7d385886-eb77-4ef7-ac2f-5f29e177f78e" />
 <img width="1889" height="928" alt="p2" src="https://github.com/user-attachments/assets/8706dd90-4e87-43c3-8848-e970ccbb5abc" />
-<img width="1920" height="1080" alt="p1" src="https://github.com/user-attachments/assets/bf0f020f-e177-45d2-93e6-93714927d279" />
+<img width="922" height="613" alt="Screenshot 2026-06-12 012723" src="https://github.com/user-attachments/assets/25df986b-7bfe-403b-b709-3ba8dcf75f1b" />
+
 
 
 
